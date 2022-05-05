@@ -1,5 +1,5 @@
 latency-wait: "{{cookiecutter.latency_wait}}"
-use-use-conda: {{cookiecutter.use_conda}}
+use-conda: {{cookiecutter.use_conda}}
 keep-going: False
 restart-times: 0
 cluster: "qsub-submit.py"

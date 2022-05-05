@@ -59,7 +59,7 @@ if not wildcards_str:
 
 
 # determine names to pass through for job name, logfiles
-log_dir = cluster.get("logdir", "{{cookiecutter.default_cluster_logdir}}")
+log_dir = {{cookiecutter.default_cluster_logdir}}
 # get the name of the job
 jobname = "smk.{0}.{1}".format(rule, wildcards_str)
 # get the output file name

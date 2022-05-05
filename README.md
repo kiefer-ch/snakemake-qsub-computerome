@@ -25,10 +25,10 @@ This command will prompt for parameters to set.
 
 Once complete, it will allow you to run Snakemake with the cluster
 configuration using the `--profile` flag. For example, if the profile name
-was `cluster-qsub`, then you can run:
+was `thinnode`, then you can run:
 
 ```
-snakemake --profile cluster-qsub {...}
+snakemake --profile thinnode {...}
 ```
 
 ## Specification of resources/cluster settings
