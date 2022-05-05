@@ -1,9 +1,12 @@
 latency-wait: "{{cookiecutter.latency_wait}}"
-use-conda: {{cookiecutter.use_conda}}
-keep-going: {{cookiecutter.keep_going}}
-restart-times: {{cookiecutter.restart_times}}
-jobs: {{cookiecutter.jobs}}
+use-use-conda: {{cookiecutter.use_conda}}
+keep-going: False
+restart-times: 0
 cluster: "qsub-submit.py"
 cluster-status: "qsub-status.py"
 jobscript: "qsub-jobscript.sh"
 local-cores: 1
+jobs: 20
+cores: 40
+conda-base-path: {{cookiecutter.conda_base_path}}
+cache: {{cookiecutter.use_cache}}
