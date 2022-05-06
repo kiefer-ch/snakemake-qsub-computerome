@@ -8,5 +8,5 @@ jobscript: "qsub-jobscript.sh"
 local-cores: 1
 jobs: 20
 cores: 40
-conda-base-path: {{cookiecutter.conda_base_path}}
+conda-base-path: "{{cookiecutter.conda_base_path}}"
 cache: {{cookiecutter.use_cache}}
