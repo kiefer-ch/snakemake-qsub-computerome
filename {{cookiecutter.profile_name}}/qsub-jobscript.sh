@@ -11,7 +11,7 @@ EXIT_STATUS=$?  # get the exit status
 
 # print resource consumption
 echo "-----------------------------"
-qstat -f $JOB_ID | grep '^    resources_used.'
+qstat -f -1 $JOB_ID | grep '^    resources_used.'
 
 # print exit status
 echo "-----------------------------"

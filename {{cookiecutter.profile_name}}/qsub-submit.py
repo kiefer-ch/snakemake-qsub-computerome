@@ -60,6 +60,8 @@ if not wildcards_str:
 
 # determine names to pass through for job name, logfiles
 log_dir = "{{cookiecutter.default_cluster_logdir}}"
+# create log_dir if not already existing 
+Path(log_dir).mkdir(parents=True,exist_ok=True)
 # get the name of the job
 jobname = "smk.{0}.{1}".format(rule, wildcards_str)
 # get the output file name

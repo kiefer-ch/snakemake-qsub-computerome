@@ -4,7 +4,7 @@
     "use_conda": true,
     "conda_base_path": "/home/projects/reg_00XXX/apps/miniconda3",
     "default_mem_mb": 2048,
-    "use_cache": false,
+    "use_cache": true,
     "default_cluster_logdir": "log/cluster",
     "profile_name": "thinnode"
 }
