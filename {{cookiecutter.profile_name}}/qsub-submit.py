@@ -31,7 +31,7 @@ job = read_job_properties(jobscript)
 threads = job.get("threads", 1)
 resources = job.get("resources", dict())
 mem_mb = resources.get("mem_mb", int({{cookiecutter.default_mem_mb}}))
-runtime = resources.get("runtime", None)
+runtime = resources.get("runtime", int({{cookiecutter.default_runtime}}))
 
 
 # set up resources part of command
@@ -60,7 +60,7 @@ if not wildcards_str:
 
 # determine names to pass through for job name, logfiles
 log_dir = "{{cookiecutter.default_cluster_logdir}}"
-# create log_dir if not already existing 
+# create log_dir if not already existing
 Path(log_dir).mkdir(parents=True,exist_ok=True)
 # get the name of the job
 jobname = "smk.{0}.{1}".format(rule, wildcards_str)
