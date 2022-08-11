@@ -31,21 +31,16 @@ job = read_job_properties(jobscript)
 threads = job.get("threads", 1)
 resources = job.get("resources", dict())
 mem_mb = resources.get("mem_mb", int({{cookiecutter.default_mem_mb}}))
+node_type = resources.get("node_type", "thinnode")
 runtime = resources.get("runtime", int({{cookiecutter.default_runtime}}))
-
+runtime = int(runtime)
+runtime_hr = runtime // 60
+runtime_min = runtime % 60
 
 # set up resources part of command
-resources_cmd = " -l nodes=1:ppn={threads}:thinnode"
+resources_cmd = " -l nodes=1:ppn={threads}:{node_type}"
 resources_cmd += ",mem={mem_mb}mb"
-# if runtime specified, use it
-if runtime:
-    # make sure it is integer
-    runtime = int(runtime)
-    # runtime needs to be specified in HH:MM:SS, but is currently in minutes
-    runtime_hr = runtime // 60
-    runtime_min = runtime % 60
-    # add to resources command
-    resources_cmd += ",walltime=%02d:%02d:00" % (runtime_hr, runtime_min)
+resources_cmd += ",walltime=%02d:%02d:00" % (runtime_hr, runtime_min)
 
 
 # get the rule
@@ -59,17 +54,17 @@ if not wildcards_str:
 
 
 # determine names to pass through for job name, logfiles
-log_dir = "{{cookiecutter.default_cluster_logdir}}"
+log_dir = Path("{{cookiecutter.default_cluster_logdir}}")
 # create log_dir if not already existing
-Path(log_dir).mkdir(parents=True,exist_ok=True)
+log_dir.mkdir(parents=True, exist_ok=True)
 # get the name of the job
 jobname = "smk.{0}.{1}".format(rule, wildcards_str)
 # get the output file name
 out_log = "{}.out".format(jobname)
 err_log = "{}.err".format(jobname)
 # get logfile paths
-out_log_path = str(Path(log_dir).joinpath(out_log))
-err_log_path = str(Path(log_dir).joinpath(err_log))
+out_log_path = str(log_dir.joinpath(out_log))
+err_log_path = str(log_dir.joinpath(err_log))
 
 
 # set up jobinfo part of command
