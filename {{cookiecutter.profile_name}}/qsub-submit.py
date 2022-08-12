@@ -47,7 +47,7 @@ resources_cmd += ",walltime=%02d:%02d:00" % (runtime_hr, runtime_min)
 rule = job.get("rule", "jobname")
 # get the wildcards
 wildcards = job.get("wildcards", dict())
-wildcards_str = ";".join("{}={}".format(k, v) for k, v in wildcards.items())
+wildcards_str = ",".join("{}={}".format(k, v) for k, v in wildcards.items())
 if not wildcards_str:
     # if there aren't wildcards, this is a unique rule
     wildcards_str = "unique"
@@ -63,8 +63,8 @@ jobname = "smk.{0}.{1}".format(rule, wildcards_str)
 out_log = "{}.out".format(jobname)
 err_log = "{}.err".format(jobname)
 # get logfile paths
-out_log_path = str(log_dir.joinpath(out_log))
-err_log_path = str(log_dir.joinpath(err_log))
+out_log_path = str(log_dir.joinpath(out_log).resolve())
+err_log_path = str(log_dir.joinpath(err_log).resolve())
 
 
 # set up jobinfo part of command
